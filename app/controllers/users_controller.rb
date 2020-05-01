@@ -13,8 +13,9 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       flash[:notice] = "Your account information was successfully updated"
       redirect_to articles_path
-  else
+    else
     render 'edit'
+    end
   end
 
   def create
@@ -29,12 +30,9 @@ class UsersController < ApplicationController
 
 
 
-
-
   private
   def user_params
     params.require(:user).permit(:username, :email, :password)
   end
-
 
 end

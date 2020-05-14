@@ -1,0 +1,19 @@
+<h1 class="text-center mt-4">Listing all Categories</h1>
+
+<div class="container">
+   <div class="row justify-content-center">
+    <div class="col-8 mt-3">
+      <% @categories.each do |category| %>
+        <ul class="list-group text-center">
+          <div class="row justify-content-center">
+            <div class="well col-md-4">
+              <li class="list-group-item">
+                <%= link_to "#{category.name}", category_path(category) %>
+              </li>
+            </div>
+          </div>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

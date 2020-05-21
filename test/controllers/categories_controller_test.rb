@@ -1,23 +1,30 @@
 require 'test_helper'
 
-class CategoriesControllerTest < ActionController::TestCase
-  def setup
-    @category = Category.create(name: "sports")
+class CategoriesControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @category = Category.create(name: "Sports")
   end
 
-  test "should get categories index" do
-    get :index
+  test "should get index" do
+    get categories_url
     assert_response :success
   end
 
   test "should get new" do
-    get :new
+    get new_category_url
     assert_response :success
   end
 
-  test "should get show" do
-  get :show, params: { id: @category }
-    assert_response :success
+  test "should create category" do
+    assert_difference('Category.count', 1) do
+      post categories_url, params: { category: { name: "Travel" } }
+    end
+
+    assert_redirected_to category_url(Category.last)
   end
 
+  test "should show category" do
+    get category_url(@category)
+    assert_response :success
+  end
 end
